@@ -1,0 +1,15 @@
+C:\Users\79787\source\repos\Software-Design\HW2\HW2\bin\Debug\net8.0\HW2.exe
+C:\Users\79787\source\repos\Software-Design\HW2\HW2\bin\Debug\net8.0\HW2.deps.json
+C:\Users\79787\source\repos\Software-Design\HW2\HW2\bin\Debug\net8.0\HW2.runtimeconfig.json
+C:\Users\79787\source\repos\Software-Design\HW2\HW2\bin\Debug\net8.0\HW2.dll
+C:\Users\79787\source\repos\Software-Design\HW2\HW2\bin\Debug\net8.0\HW2.pdb
+C:\Users\79787\source\repos\Software-Design\HW2\HW2\obj\Debug\net8.0\HW2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\79787\source\repos\Software-Design\HW2\HW2\obj\Debug\net8.0\HW2.AssemblyInfoInputs.cache
+C:\Users\79787\source\repos\Software-Design\HW2\HW2\obj\Debug\net8.0\HW2.AssemblyInfo.cs
+C:\Users\79787\source\repos\Software-Design\HW2\HW2\obj\Debug\net8.0\HW2.csproj.CoreCompileInputs.cache
+C:\Users\79787\source\repos\Software-Design\HW2\HW2\obj\Debug\net8.0\HW2.sourcelink.json
+C:\Users\79787\source\repos\Software-Design\HW2\HW2\obj\Debug\net8.0\HW2.dll
+C:\Users\79787\source\repos\Software-Design\HW2\HW2\obj\Debug\net8.0\refint\HW2.dll
+C:\Users\79787\source\repos\Software-Design\HW2\HW2\obj\Debug\net8.0\HW2.pdb
+C:\Users\79787\source\repos\Software-Design\HW2\HW2\obj\Debug\net8.0\HW2.genruntimeconfig.cache
+C:\Users\79787\source\repos\Software-Design\HW2\HW2\obj\Debug\net8.0\ref\HW2.dll
