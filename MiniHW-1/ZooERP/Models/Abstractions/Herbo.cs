@@ -2,7 +2,7 @@
 
 public abstract class Herbo : Animal
 {
-    public uint Kindess
+    public uint Kindness
     {
         get => _kindness;
         private init
@@ -21,6 +21,6 @@ public abstract class Herbo : Animal
     private readonly uint _kindness;
     protected Herbo(string name, int food, bool isHealthy, int number, uint kindness) : base(name, food, isHealthy, number)
     {
-        Kindess = kindness;
+        Kindness = kindness;
     }
 }
