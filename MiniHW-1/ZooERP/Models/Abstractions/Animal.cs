@@ -5,7 +5,7 @@ public abstract class Animal : IAlive, IInventory
     public string Name { get; set; }
     public int Food { get; set; }
     public bool IsHealthy { get; set; }
-    public abstract int Number { get; init; }
+    public int Number { get; init; }
 
     protected Animal(string name, int food, bool isHealthy, int number)
     {
