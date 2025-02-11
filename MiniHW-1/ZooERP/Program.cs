@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics;
+using ZooERP.Configuration;
 using ZooERP.Models.Animals;
 using ZooERP.Models.Inventory;
 using ZooERP.Services;
@@ -10,8 +11,7 @@ class Program
     {
         // Настройка DI-контейнера
         var serviceProvider = new ServiceCollection()
-            .AddSingleton<VeterinaryClinic>()
-            .AddSingleton<Zoo>()
+            .AddApplicationServices()
             .BuildServiceProvider();
 
         // Для отображения спецсимволов в консоли
