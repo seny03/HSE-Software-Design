@@ -38,4 +38,4 @@
 * Убедитесь, что у вас установлен **.NET 8 или выше**.
 * Убедитесь, что у вас установлен **xUnit** и **DependencyInjection**.
 * Выполните запуск командой: `dotnet run --project .\ZooERP\ZooERP.csproj`
-* Unit-тесты содержатся в проекте **ZooERPTests**.  Их можно запустить, например, если открыть ![](./MiniHW-1.sln) в Visual Studio.
+* Unit-тесты содержатся в проекте **ZooERPTests**.  Их можно запустить, например, если открыть [](./MiniHW-1.sln) в Visual Studio.
