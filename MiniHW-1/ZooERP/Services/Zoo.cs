@@ -19,18 +19,18 @@ public class Zoo
         if (_clinic.CheckHealth(animal))
         {
             Animals.Add(animal);
-            Debug.WriteLine($"{animal.Name} принят в зоопарк.");
+            Debug.WriteLine($"[DEBUG] {animal.Name} принят в зоопарк.");
             return true;
         }
 
-        Debug.WriteLine($"{animal.Name} не прошел ветеринарный осмотр.");
+        Debug.WriteLine($"[DEBUG] {animal.Name} признан больным и не принят в зоопарк.");
         return false;
     }
 
     public bool AddInventory(Thing item)
     {
         Inventory.Add(item);
-        Debug.WriteLine($"Добавлена вещь с номером {item.Number}.");
+        Debug.WriteLine($"[DEBUG] Добавлена вещь с номером {item.Number}.");
         return true;
     }
 
@@ -42,6 +42,11 @@ public class Zoo
     public IEnumerable<Animal> GetContactZooAnimals()
     {
         return Animals.OfType<Herbo>().Where(a => a.Kindness > 5);
+    }
+
+    public IEnumerable<Animal> GetAllAnimals()
+    {
+        return Animals;
     }
 
     public IEnumerable<Thing> GetInventoryList()
