@@ -6,7 +6,9 @@ using Moq;
 using Objectivity.AutoFixture.XUnit2.AutoMoq.Attributes;
 using S4.HseCarShop.Models;
 using S4.HseCarShop.Models.Abstractions;
-using S4.HseCarShop.Models.HandCars;
+using S4.HseCarShop.Models.HandCar;
+using S4.HseCarShop.Models.HybridCar;
+using S4.HseCarShop.Models.PedalCar;
 using S4.HseCarShop.Services;
 using S4.HseCarShop.Services.Abstractions;
 using System.ComponentModel.DataAnnotations;
@@ -48,11 +50,11 @@ public class CarShopServiceTests
         // Assert
         Assert.Equal(carNumer, customer.Car.Number);
 
-        _carProviderMock.Verify(cp => cp.GetCar(It.IsAny<CarType>()), Times.Never);
+        _carProviderMock.Verify(cp => cp.GetCar(It.IsAny<IEnumerable<CarType>>()), Times.Never); // IEnumerable added
     }
 
     [Theory, AutoMockData]
-    public void SellCars_CustomerAlreadyHasCar_SkipCustomer2(
+    internal void SellCars_CustomerAlreadyHasCar_SkipCustomer2( // Changed to internal to fix error. Tests steal internal visible to main project
     Customer customer,
     [Frozen] Mock<ICarProvider> carStorageMock,
     [Frozen] Mock<ICustomerStorage> customerStorageMock,
@@ -65,17 +67,19 @@ public class CarShopServiceTests
         carShop.SellCars();
 
         // Assert
-        carStorageMock.Verify(cp => cp.GetCar(It.IsAny<CarType>()), Times.Never);
+        carStorageMock.Verify(cp => cp.GetCar(It.IsAny<IEnumerable<CarType>>()), Times.Never); // IEnumerable added
     }
 
     [Theory]
     [InlineAutoData(6, 0, CarType.Pedal)]
-    [InlineAutoData(0, 6, CarType.Hand)]
+    [InlineAutoData(0, 6, CarType.Hand, GripsType.Silicone)]
+    [InlineAutoData(6, 6, CarType.Hybrid, GripsType.Rubber)] // Test for Hybrid car added
     [InlineAutoData(6, 6)]
-    public void SellCars_HasSuitableCar_AssignCar(
+    internal void SellCars_HasSuitableCar_AssignCar( // changed to internal
         uint legStrength,
         uint handStrength,
         CarType expectedType,
+        GripsType gripsType,
         [Range(1, 100)] uint pedalSize)
     {
         var faker = new Faker();
@@ -89,16 +93,30 @@ public class CarShopServiceTests
         var engine = expectedType switch
         {
             CarType.Pedal => new PedalEngine(pedalSize),
-            CarType.Hand => new HandEngine(),
+            CarType.Hand => new HandEngine(gripsType),
+            CarType.Hybrid => new HybridEngine(gripsType, pedalSize),
             _ => null as IEngine,
         };
 
-        var expectedCar = _fixture.Build<HandCar>()
-            .FromFactory(() => new Car(engine!, _fixture.Create<Guid>()))
-            .Create();
+        var expectedCar = expectedType switch
+        {
+            CarType.Pedal => _fixture.Build<PedalCar>()
+            .FromFactory(() => new PedalCar(_fixture.Create<Guid>(), (PedalEngine)engine!))
+            .Create(),
+
+            CarType.Hand => _fixture.Build<HandCar>()
+            .FromFactory(() => new HandCar(_fixture.Create<Guid>(), (HandEngine)engine!))
+            .Create(),
+
+            CarType.Hybrid => _fixture.Build<HybridCar>()
+            .FromFactory(() => new HybridCar(_fixture.Create<Guid>(), (HybridEngine)engine!))
+            .Create(),
+
+            _ => null as ICar
+        }; // updated logic of generating expectedCar
 
         _customersProviderMock.Setup(x => x.GetCustomers()).Returns([customer]);
-        _carProviderMock.Setup(x => x.GetCar(It.Is<CarType>(e => e == engine!.Type))).Returns(expectedCar);
+        _carProviderMock.Setup(x => x.GetCar(It.Is<IEnumerable<CarType>>(e => e.Contains(expectedType)))).Returns(expectedCar); // added IEnumerable, == changed on Contains
 
         // Act
         var service = _fixture.Create<CarShopService>();
@@ -108,7 +126,7 @@ public class CarShopServiceTests
         Assert.NotNull(customer.Car);
         Assert.Equal(expectedCar, customer.Car);
 
-        _carProviderMock.Verify(x => x.GetCar(It.IsAny<CarType>()), Times.Once);
+        _carProviderMock.Verify(x => x.GetCar(It.IsAny<IEnumerable<CarType>>()), Times.Once); // added IEnumerable
     }
 
     [Theory]
@@ -116,7 +134,7 @@ public class CarShopServiceTests
     [InlineAutoMockData(3, 0)]
     [InlineAutoMockData(0, 3)]
     [InlineAutoMockData(0, 0)]
-    public void SellCars_HasNoSuitableCar_DoNotAssignCar(
+    internal void SellCars_HasNoSuitableCar_DoNotAssignCar( // changed to internal
         [Range(0, 4)] uint legStrength,
         [Range(0, 4)] uint handStrength,
         [Frozen] Mock<ICarProvider> carStorageMock,
@@ -137,14 +155,16 @@ public class CarShopServiceTests
         // Assert
         Assert.Null(customer.Car);
 
-        carStorageMock.Verify(x => x.GetCar(It.IsAny<CarType>()), Times.Never);
+        carStorageMock.Verify(x => x.GetCar(It.IsAny<IEnumerable<CarType>>()), Times.Never); // added IEnumerable
     }
 
     [Theory]
     [AutoMockData]
-    public void SellCars_MultipleSuitableCustomers_ProcessAll(
+    // third customer added
+    internal void SellCars_MultipleSuitableCustomers_ProcessAll( // changed to internal
         [CustomizeCustomer(0, 6)] Customer customer1,
         [CustomizeCustomer(6, 0)] Customer customer2,
+        [CustomizeCustomer(6, 6)] Customer customer3,
         [Frozen] Mock<ICarProvider> carStorageMock,
         [Frozen] Mock<ICustomerStorage> customerStorageMock,
         CarShopService carShop)
@@ -154,19 +174,22 @@ public class CarShopServiceTests
         {
             customer1,
             customer2,
+            customer3,
         };
 
-        var expectedCars = new[]
+        var expectedCars = new ICar[]
         {
-                _fixture.Build<HandCar>().FromFactory(() => new Car(new PedalEngine(42), _fixture.Create<Guid>())).Create(),
-                _fixture.Build<HandCar>().FromFactory(() => new Car(new HandEngine(), _fixture.Create<Guid>())).Create(),
-        };
+                _fixture.Build<PedalCar>().FromFactory(() => new PedalCar(_fixture.Create<Guid>(), new PedalEngine(42))).Create(),
+                _fixture.Build<HandCar>().FromFactory(() => new HandCar(_fixture.Create<Guid>(), new HandEngine(GripsType.Rubber))).Create(),
+                _fixture.Build<HybridCar>().FromFactory(() => new HybridCar(_fixture.Create<Guid>(), new HybridEngine(GripsType.Silicone, 52))).Create(),
+        }; // updated
 
         customerStorageMock.Setup(x => x.GetCustomers()).Returns(customers);
 
-        carStorageMock.SetupSequence(cp => cp.GetCar(It.IsAny<CarType>()))
+        carStorageMock.SetupSequence(cp => cp.GetCar(It.IsAny<IEnumerable<CarType>>())) // IEnumerable added
             .Returns(expectedCars[0])
-            .Returns(expectedCars[1]);
+            .Returns(expectedCars[1])
+            .Returns(expectedCars[2]);
 
         // Act
         carShop.SellCars();
@@ -174,14 +197,17 @@ public class CarShopServiceTests
         // Assert
         Assert.Equal(expectedCars[0], customers[0].Car);
         Assert.Equal(expectedCars[1], customers[1].Car);
+        Assert.Equal(expectedCars[2], customers[2].Car);
 
-        carStorageMock.Verify(x => x.GetCar(It.IsAny<CarType>()), Times.Exactly(2));
+        carStorageMock.Verify(x => x.GetCar(It.IsAny<IEnumerable<CarType>>()), Times.Exactly(customers.Length)); // IEnumerable added
     }
 
     [Theory]
     [InlineAutoMockData(5, 6)]
     [InlineAutoMockData(6, 5)]
-    public void SellCars_BorderlineStrengthValues_AssignCorrectly(
+    [InlineAutoMockData(6, 6)]
+    // third client added
+    internal void SellCars_BorderlineStrengthValues_AssignCorrectly( // changed to internal
         uint legStrength,
         uint handStrength,
         [Frozen] Mock<ICarProvider> carStorageMock,
@@ -196,21 +222,26 @@ public class CarShopServiceTests
 
         customerStorageMock.Setup(cs => cs.GetCustomers()).Returns([customer]);
 
-        var expectedCars = new[]
+        var expectedCars = new ICar[]
         {
-                _fixture.Build<HandCar>().FromFactory(() => new Car(new PedalEngine(42), _fixture.Create<Guid>())).Create(),
-                _fixture.Build<HandCar>().FromFactory(() => new Car(new HandEngine(), _fixture.Create<Guid>())).Create(),
-        };
+                _fixture.Build<PedalCar>().FromFactory(() => new PedalCar(_fixture.Create<Guid>(), new PedalEngine(42))).Create(),
+                _fixture.Build<HandCar>().FromFactory(() => new HandCar(_fixture.Create<Guid>(), new HandEngine(GripsType.Rubber))).Create(),
+                _fixture.Build<HybridCar>().FromFactory(() => new HybridCar(_fixture.Create<Guid>(), new HybridEngine(GripsType.Silicone, 52))).Create(),
+        }; // updated
 
-        carStorageMock.SetupSequence(x => x.GetCar(It.IsAny<CarType>()))
+        carStorageMock.SetupSequence(x => x.GetCar(It.IsAny<IEnumerable<CarType>>()))
             .Returns(expectedCars[0])
-            .Returns(expectedCars[1]);
+            .Returns(expectedCars[1])
+            .Returns(expectedCars[2]);
 
         // Act
         carShop.SellCars();
 
+        Assert.NotNull(customer); // check on client got his car
+        Assert.Contains(customer.Car, expectedCars);
+
         // Assert
-        carStorageMock.Verify(cp => cp.GetCar(It.IsAny<CarType>()), Times.Once);
+        carStorageMock.Verify(cp => cp.GetCar(It.IsAny<IEnumerable<CarType>>()), Times.Once); // IEnumerable added
     }
 
     #endregion Tests
