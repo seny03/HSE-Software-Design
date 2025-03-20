@@ -1,0 +1,46 @@
+Accounts:
+  - Id: 192f2518-fd57-45a9-8acf-0e92cd0066a4
+    Name: Main_Account
+    Balance: 2800
+  - Id: 7e55f70b-851f-4104-be3b-fdbea8aeaa92
+    Name: Savings_Account
+    Balance: 4500.50
+Categories:
+  - Id: 11375b50-4d6e-47f7-99d9-9970ca2c323e
+    Name: Salary
+    Type: 0
+  - Id: b113d602-8ab1-4d0d-a2aa-f0b2eb09ebd4
+    Name: Groceries
+    Type: 1
+  - Id: f4c3b3c0-ec50-4d0f-a818-a82a795690f8
+    Name: Entertainment
+    Type: 1
+Operations:
+  - Id: 34a4a54f-65fa-4a72-81f7-cd1d5b7b7348
+    Type: 0
+    BankAccountId: 192f2518-fd57-45a9-8acf-0e92cd0066a4
+    Amount: 2000
+    Date: 2025-03-20T17:51:25.2207340+03:00
+    CategoryId: 11375b50-4d6e-47f7-99d9-9970ca2c323e
+    Description: Salary_for_March
+  - Id: 9683d41c-0ba4-40af-87e9-767852f5a713
+    Type: 1
+    BankAccountId: 192f2518-fd57-45a9-8acf-0e92cd0066a4
+    Amount: 150
+    Date: 2025-03-20T17:51:25.2313960+03:00
+    CategoryId: b113d602-8ab1-4d0d-a2aa-f0b2eb09ebd4
+    Description: Grocery_shopping
+  - Id: d3d42305-420a-4fda-8c58-c3560a1757a0
+    Type: 1
+    BankAccountId: 192f2518-fd57-45a9-8acf-0e92cd0066a4
+    Amount: 50
+    Date: 2025-03-20T17:51:25.2314050+03:00
+    CategoryId: f4c3b3c0-ec50-4d0f-a818-a82a795690f8
+    Description: Cinema_ticket
+  - Id: 8b35c4dc-8c45-4682-ac39-db7ae0ca3c4c
+    Type: 1
+    BankAccountId: 7e55f70b-851f-4104-be3b-fdbea8aeaa92
+    Amount: 500
+    Date: 2025-03-20T17:51:25.2314090+03:00
+    CategoryId: f4c3b3c0-ec50-4d0f-a818-a82a795690f8
+    Description: Vacation_booking

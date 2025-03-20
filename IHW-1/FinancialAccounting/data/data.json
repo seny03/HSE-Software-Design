@@ -1,0 +1,69 @@
+{
+  "Accounts": [
+    {
+      "Id": "9ed4b1d5-5183-4ac7-a5a8-b4c7a831c05f",
+      "Name": "Main_Account",
+      "Balance": 2800
+    },
+    {
+      "Id": "73e646ae-610c-434f-a75f-9f3bf40e5983",
+      "Name": "Savings_Account",
+      "Balance": 4500.50
+    }
+  ],
+  "Categories": [
+    {
+      "Id": "82c9d0cc-618f-4992-a904-777e17797182",
+      "Name": "Salary",
+      "Type": 0
+    },
+    {
+      "Id": "ca44dbbc-d993-423f-9acd-6731b8404d93",
+      "Name": "Groceries",
+      "Type": 1
+    },
+    {
+      "Id": "0068c7dc-c566-4d07-8a8b-ffeb18c3ab82",
+      "Name": "Entertainment",
+      "Type": 1
+    }
+  ],
+  "Operations": [
+    {
+      "Id": "ddcefd5a-e749-4f50-adeb-0089dea19014",
+      "Type": 0,
+      "BankAccountId": "9ed4b1d5-5183-4ac7-a5a8-b4c7a831c05f",
+      "Amount": 2000,
+      "Date": "2025-03-20T18:54:43.058165+03:00",
+      "CategoryId": "82c9d0cc-618f-4992-a904-777e17797182",
+      "Description": "Salary_for_March"
+    },
+    {
+      "Id": "80c58a0e-692f-4a09-9edb-bd66ec506350",
+      "Type": 1,
+      "BankAccountId": "9ed4b1d5-5183-4ac7-a5a8-b4c7a831c05f",
+      "Amount": 150,
+      "Date": "2025-03-20T18:54:43.068678+03:00",
+      "CategoryId": "ca44dbbc-d993-423f-9acd-6731b8404d93",
+      "Description": "Grocery_shopping"
+    },
+    {
+      "Id": "fa645eee-0d6e-4350-acda-e6301c9a1475",
+      "Type": 1,
+      "BankAccountId": "9ed4b1d5-5183-4ac7-a5a8-b4c7a831c05f",
+      "Amount": 50,
+      "Date": "2025-03-20T18:54:43.06869+03:00",
+      "CategoryId": "0068c7dc-c566-4d07-8a8b-ffeb18c3ab82",
+      "Description": "Cinema_ticket"
+    },
+    {
+      "Id": "9fdfe732-00c4-4eb5-b7c4-d888debf16b9",
+      "Type": 1,
+      "BankAccountId": "73e646ae-610c-434f-a75f-9f3bf40e5983",
+      "Amount": 500,
+      "Date": "2025-03-20T18:54:43.068694+03:00",
+      "CategoryId": "0068c7dc-c566-4d07-8a8b-ffeb18c3ab82",
+      "Description": "Vacation_booking"
+    }
+  ]
+}

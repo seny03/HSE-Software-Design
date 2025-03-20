@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "IimhXUSpBJo=",
+  "success": true,
+  "projectFilePath": "/Users/arsemkin/VS Code Projects/HSE_SD/IHW-1/FinancialAccounting/FinancialAccounting.csproj",
+  "expectedPackageFiles": [
+    "/Users/arsemkin/.nuget/packages/csvhelper/33.0.1/csvhelper.33.0.1.nupkg.sha512",
+    "/Users/arsemkin/.nuget/packages/microsoft.extensions.dependencyinjection/9.0.3/microsoft.extensions.dependencyinjection.9.0.3.nupkg.sha512",
+    "/Users/arsemkin/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/9.0.3/microsoft.extensions.dependencyinjection.abstractions.9.0.3.nupkg.sha512",
+    "/Users/arsemkin/.nuget/packages/yamldotnet/16.3.0/yamldotnet.16.3.0.nupkg.sha512"
+  ],
+  "logs": []
+}

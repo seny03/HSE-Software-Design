@@ -1,0 +1,5 @@
+Id,Type,BankAccountId,Amount,Date,CategoryId,Description
+c14a1d7b-f790-44a6-855d-d9dc72e32ac9,Income,0d7fe24b-6f53-4380-a885-164e06feaa04,2000,03/20/2025 17:55:22,16d7cab3-f9cc-48fa-a7a9-b45cce280f83,Salary_for_March
+2b15602f-1492-4739-a6eb-7ca685f2dc02,Expense,0d7fe24b-6f53-4380-a885-164e06feaa04,150,03/20/2025 17:55:22,6540e7bd-166f-489e-974f-5014413efa34,Grocery_shopping
+de15a77f-80bd-4be0-8b5b-9549fc49488a,Expense,0d7fe24b-6f53-4380-a885-164e06feaa04,50,03/20/2025 17:55:22,00cfbfeb-8847-442b-884e-33efe21bfdb2,Cinema_ticket
+f28162e5-24e9-4c97-bd8a-d15cce85b452,Expense,6e6c921a-4aad-41f4-b4f1-1ee69d22a716,500,03/20/2025 17:55:22,00cfbfeb-8847-442b-884e-33efe21bfdb2,Vacation_booking
