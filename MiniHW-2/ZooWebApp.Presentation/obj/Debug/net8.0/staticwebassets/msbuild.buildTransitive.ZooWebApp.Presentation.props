@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../buildMultiTargeting/ZooWebApp.Presentation.props" />
+</Project>

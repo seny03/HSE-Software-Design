@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "PSEyis1sjH0=",
+  "success": true,
+  "projectFilePath": "/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Domain/ZooWebApp.Domain.csproj",
+  "expectedPackageFiles": [
+    "/Users/arsemkin/.nuget/packages/mediatr/12.1.1/mediatr.12.1.1.nupkg.sha512",
+    "/Users/arsemkin/.nuget/packages/mediatr.contracts/2.0.1/mediatr.contracts.2.0.1.nupkg.sha512",
+    "/Users/arsemkin/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/6.0.0/microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,234 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Application.Tests/ZooWebApp.Application.Tests.csproj": {}
+  },
+  "projects": {
+    "/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Application.Tests/ZooWebApp.Application.Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Application.Tests/ZooWebApp.Application.Tests.csproj",
+        "projectName": "ZooWebApp.Application.Tests",
+        "projectPath": "/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Application.Tests/ZooWebApp.Application.Tests.csproj",
+        "packagesPath": "/Users/arsemkin/.nuget/packages/",
+        "outputPath": "/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Application.Tests/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/arsemkin/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Application/ZooWebApp.Application.csproj": {
+                "projectPath": "/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Application/ZooWebApp.Application.csproj"
+              },
+              "/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Domain/ZooWebApp.Domain.csproj": {
+                "projectPath": "/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Domain/ZooWebApp.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.9.0, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.20.70, )"
+            },
+            "coverlet.collector": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.7.0, )"
+            },
+            "xunit.runner.visualstudio": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.5.7, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.202/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Application/ZooWebApp.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Application/ZooWebApp.Application.csproj",
+        "projectName": "ZooWebApp.Application",
+        "projectPath": "/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Application/ZooWebApp.Application.csproj",
+        "packagesPath": "/Users/arsemkin/.nuget/packages/",
+        "outputPath": "/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Application/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/arsemkin/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Domain/ZooWebApp.Domain.csproj": {
+                "projectPath": "/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Domain/ZooWebApp.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "MediatR": {
+              "target": "Package",
+              "version": "[12.1.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.202/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Domain/ZooWebApp.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Domain/ZooWebApp.Domain.csproj",
+        "projectName": "ZooWebApp.Domain",
+        "projectPath": "/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Domain/ZooWebApp.Domain.csproj",
+        "packagesPath": "/Users/arsemkin/.nuget/packages/",
+        "outputPath": "/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Domain/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/arsemkin/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "MediatR": {
+              "target": "Package",
+              "version": "[12.1.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.202/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

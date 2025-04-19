@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ZooWebApp.Application\ZooWebApp.Application.csproj" />
+    <ProjectReference Include="..\ZooWebApp.Domain\ZooWebApp.Domain.csproj" />
+    <ProjectReference Include="..\ZooWebApp.Infrastructure\ZooWebApp.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

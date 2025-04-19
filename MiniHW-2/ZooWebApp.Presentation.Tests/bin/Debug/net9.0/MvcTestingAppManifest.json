@@ -1,0 +1,6 @@
+{
+  "ZooWebApp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/Users\/arsemkin\/VS Code Projects\/HSE-Software-Design\/MiniHW-2\/ZooWebApp.Application",
+  "ZooWebApp.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/Users\/arsemkin\/VS Code Projects\/HSE-Software-Design\/MiniHW-2\/ZooWebApp.Domain",
+  "ZooWebApp.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/Users\/arsemkin\/VS Code Projects\/HSE-Software-Design\/MiniHW-2\/ZooWebApp.Infrastructure",
+  "ZooWebApp.Presentation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/Users\/arsemkin\/VS Code Projects\/HSE-Software-Design\/MiniHW-2\/ZooWebApp.Presentation"
+}

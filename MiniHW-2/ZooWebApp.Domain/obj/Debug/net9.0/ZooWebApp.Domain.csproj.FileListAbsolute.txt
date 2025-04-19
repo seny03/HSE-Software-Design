@@ -1,0 +1,13 @@
+/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Domain/bin/Debug/net9.0/ZooWebApp.Domain.deps.json
+/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Domain/bin/Debug/net9.0/ZooWebApp.Domain.dll
+/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Domain/bin/Debug/net9.0/ZooWebApp.Domain.pdb
+/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Domain/obj/Debug/net9.0/ZooWebApp.Domain.csproj.AssemblyReference.cache
+/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Domain/obj/Debug/net9.0/ZooWebApp.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Domain/obj/Debug/net9.0/ZooWebApp.Domain.AssemblyInfoInputs.cache
+/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Domain/obj/Debug/net9.0/ZooWebApp.Domain.AssemblyInfo.cs
+/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Domain/obj/Debug/net9.0/ZooWebApp.Domain.csproj.CoreCompileInputs.cache
+/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Domain/obj/Debug/net9.0/ZooWebApp.Domain.sourcelink.json
+/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Domain/obj/Debug/net9.0/ZooWebApp.Domain.dll
+/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Domain/obj/Debug/net9.0/refint/ZooWebApp.Domain.dll
+/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Domain/obj/Debug/net9.0/ZooWebApp.Domain.pdb
+/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Domain/obj/Debug/net9.0/ref/ZooWebApp.Domain.dll

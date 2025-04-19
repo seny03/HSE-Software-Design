@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "zT2DwF+0qaObSn2Tu5jO4hvR7ZoLgLNUYf9f7BFpXLI=",
+  "Source": "ZooWebApp.Presentation",
+  "BasePath": "_content/ZooWebApp.Presentation",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

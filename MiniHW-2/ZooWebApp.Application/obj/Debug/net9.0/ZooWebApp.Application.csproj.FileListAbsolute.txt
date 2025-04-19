@@ -1,0 +1,16 @@
+/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Application/bin/Debug/net9.0/ZooWebApp.Application.deps.json
+/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Application/bin/Debug/net9.0/ZooWebApp.Application.dll
+/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Application/bin/Debug/net9.0/ZooWebApp.Application.pdb
+/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Application/bin/Debug/net9.0/ZooWebApp.Domain.dll
+/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Application/bin/Debug/net9.0/ZooWebApp.Domain.pdb
+/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Application/obj/Debug/net9.0/ZooWebApp.Application.csproj.AssemblyReference.cache
+/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Application/obj/Debug/net9.0/ZooWebApp.Application.GeneratedMSBuildEditorConfig.editorconfig
+/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Application/obj/Debug/net9.0/ZooWebApp.Application.AssemblyInfoInputs.cache
+/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Application/obj/Debug/net9.0/ZooWebApp.Application.AssemblyInfo.cs
+/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Application/obj/Debug/net9.0/ZooWebApp.Application.csproj.CoreCompileInputs.cache
+/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Application/obj/Debug/net9.0/ZooWebApp.Application.sourcelink.json
+/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Application/obj/Debug/net9.0/ZooWebAp.3496FB85.Up2Date
+/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Application/obj/Debug/net9.0/ZooWebApp.Application.dll
+/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Application/obj/Debug/net9.0/refint/ZooWebApp.Application.dll
+/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Application/obj/Debug/net9.0/ZooWebApp.Application.pdb
+/Users/arsemkin/VS Code Projects/HSE-Software-Design/MiniHW-2/ZooWebApp.Application/obj/Debug/net9.0/ref/ZooWebApp.Application.dll
