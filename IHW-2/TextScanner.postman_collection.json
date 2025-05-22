@@ -1,0 +1,293 @@
+{
+	"info": {
+		"_postman_id": "f5f44e5d-9b56-4a3a-ad08-0a2a4c8a5b89",
+		"name": "Text Scanner API",
+		"description": "A collection of API requests for the Text Scanner microservice application",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health Checks",
+			"item": [
+				{
+					"name": "API Gateway Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"health"
+							]
+						},
+						"description": "Check the health of the API Gateway and connected services"
+					},
+					"response": []
+				},
+				{
+					"name": "File Service Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"health"
+							]
+						},
+						"description": "Check the health of the File Service"
+					},
+					"response": []
+				},
+				{
+					"name": "Analysis Service Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"health"
+							]
+						},
+						"description": "Check the health of the Analysis Service"
+					},
+					"response": []
+				}
+			],
+			"description": "Health check endpoints for all services"
+		},
+		{
+			"name": "File Operations",
+			"item": [
+				{
+					"name": "Upload File",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/path/to/file.txt"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/upload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"upload"
+							]
+						},
+						"description": "Upload a text file for analysis"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Files",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/files",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"files"
+							]
+						},
+						"description": "Get a list of all uploaded files"
+					},
+					"response": []
+				},
+				{
+					"name": "Get File by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/files/{{fileId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"files",
+								"{{fileId}}"
+							]
+						},
+						"description": "Get a specific file by ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete File by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/files/{{fileId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"files",
+								"{{fileId}}"
+							]
+						},
+						"description": "Delete a specific file by ID (direct to File Service)"
+					},
+					"response": []
+				}
+			],
+			"description": "Operations for uploading, retrieving, and managing files"
+		},
+		{
+			"name": "Analysis Operations",
+			"item": [
+				{
+					"name": "Get Analysis by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/analysis/{{analysisId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"analysis",
+								"{{analysisId}}"
+							]
+						},
+						"description": "Get analysis results by ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Compare Files",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fileIds\": [\n    \"{{fileId1}}\",\n    \"{{fileId2}}\"\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/compare",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"compare"
+							]
+						},
+						"description": "Compare files for plagiarism detection"
+					},
+					"response": []
+				},
+				{
+					"name": "Generate Word Cloud",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/wordcloud/{{fileId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"wordcloud",
+								"{{fileId}}"
+							]
+						},
+						"description": "Generate a word cloud for a file"
+					},
+					"response": []
+				}
+			],
+			"description": "Operations for analyzing files, comparing for plagiarism, and generating word clouds"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "fileId",
+			"value": "replace_with_actual_file_id",
+			"type": "string"
+		},
+		{
+			"key": "fileId1",
+			"value": "replace_with_actual_file_id_1",
+			"type": "string"
+		},
+		{
+			"key": "fileId2",
+			"value": "replace_with_actual_file_id_2",
+			"type": "string"
+		},
+		{
+			"key": "analysisId",
+			"value": "replace_with_actual_analysis_id",
+			"type": "string"
+		}
+	]
+}

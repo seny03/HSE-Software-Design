@@ -1,0 +1,77 @@
+version: '3.8'
+
+services:
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - file-service
+      - analysis-service
+    environment:
+      - FileServiceUrl=http://file-service:8081
+      - AnalysisServiceUrl=http://analysis-service:8082
+      - ASPNETCORE_ENVIRONMENT=Development
+    networks:
+      - app-network
+
+  file-service:
+    build: ./file-service
+    ports:
+      - "8081:8081"
+    depends_on:
+      - file-db
+    volumes:
+      - ./uploads:/app/uploads
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=file-db;Port=5432;Database=filedb;Username=postgres;Password=password
+      - ASPNETCORE_ENVIRONMENT=Development
+    networks:
+      - app-network
+
+  analysis-service:
+    build: ./analysis-service
+    ports:
+      - "8082:8082"
+    depends_on:
+      - analysis-db
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=analysis-db;Port=5432;Database=analysisdb;Username=postgres;Password=password
+      - FileServiceUrl=http://file-service:8081
+      - ASPNETCORE_ENVIRONMENT=Development
+    networks:
+      - app-network
+  
+  file-db:
+    image: postgres:13
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=filedb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - file-db-data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  analysis-db:
+    image: postgres:13
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_DB=analysisdb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - analysis-db-data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  file-db-data:
+  analysis-db-data:

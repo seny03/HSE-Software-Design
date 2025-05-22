@@ -1,0 +1,5 @@
+2025-05-22 15:50:49.601 +03:00 [INF] Now listening on: http://localhost:5000
+2025-05-22 15:50:49.890 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-05-22 15:50:49.901 +03:00 [INF] Hosting environment: Production
+2025-05-22 15:50:50.011 +03:00 [INF] Content root path: C:\Users\79787\VSCodeProjects\HSE-Software-Design\IHW-2\api-gateway
+2025-05-22 15:52:49.842 +03:00 [INF] Application is shutting down...
