@@ -1,0 +1,8 @@
+C:\Users\79787\VSCodeProjects\HSE-Software-Design\IHW-3\orders-service\obj\Debug\net8.0\OrdersService.csproj.AssemblyReference.cache
+C:\Users\79787\VSCodeProjects\HSE-Software-Design\IHW-3\orders-service\obj\Debug\net8.0\OrdersService.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\79787\VSCodeProjects\HSE-Software-Design\IHW-3\orders-service\obj\Debug\net8.0\OrdersService.AssemblyInfoInputs.cache
+C:\Users\79787\VSCodeProjects\HSE-Software-Design\IHW-3\orders-service\obj\Debug\net8.0\OrdersService.AssemblyInfo.cs
+C:\Users\79787\VSCodeProjects\HSE-Software-Design\IHW-3\orders-service\obj\Debug\net8.0\OrdersService.csproj.CoreCompileInputs.cache
+C:\Users\79787\VSCodeProjects\HSE-Software-Design\IHW-3\orders-service\obj\Debug\net8.0\OrdersService.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\79787\VSCodeProjects\HSE-Software-Design\IHW-3\orders-service\obj\Debug\net8.0\OrdersService.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\79787\VSCodeProjects\HSE-Software-Design\IHW-3\orders-service\obj\Debug\net8.0\OrdersService.sourcelink.json

@@ -1,0 +1,166 @@
+@page "/payments"
+@using System.Net.Http
+@using System.Net.Http.Json
+@using frontend.Models
+@inject HttpClient Http
+
+<h3>Payments</h3>
+
+<div>
+    <h4>Create Account</h4>
+    <input @bind="userName" placeholder="Enter User Name" />
+    <button @onclick="CreateAccount">Create Account</button>
+</div>
+
+@if (createdAccount != null)
+{
+    <div>
+        <h5>Account Created:</h5>
+        <p>User ID: <code>@createdAccount.UserId</code></p>
+        <p>User Name: @createdAccount.UserName</p>
+        <p>Balance: @createdAccount.Balance</p>
+    </div>
+}
+
+<div>
+    <h4>Deposit Funds</h4>
+    <input @bind="depositUserId" placeholder="Enter User ID" />
+    <input type="number" @bind="depositAmount" placeholder="Amount" />
+    <button @onclick="Deposit">Deposit</button>
+</div>
+
+<div>
+    <h4>Check Balance</h4>
+    <input @bind="balanceUserId" placeholder="Enter User ID" />
+    <button @onclick="GetBalance">Get Balance</button>
+    @if (balance.HasValue)
+    {
+        <p>Balance: @balance.Value</p>
+    }
+</div>
+
+<div>
+    <h4>All Accounts</h4>
+    <button @onclick="GetAllAccounts">Refresh Accounts</button>
+    @if (accounts != null && accounts.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>User Name</th>
+                    <th>Balance</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var account in accounts)
+                {
+                    <tr>
+                        <td><code>@account.UserId</code></td>
+                        <td>@account.UserName</td>
+                        <td>@account.Balance</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else if (accounts != null)
+    {
+        <p>No accounts found.</p>
+    }
+</div>
+
+@if (!string.IsNullOrEmpty(message))
+{
+    <p>@message</p>
+}
+
+@code {
+    private string userName;
+    private Account createdAccount;
+    private string depositUserId;
+    private decimal depositAmount;
+    private string balanceUserId;
+    private decimal? balance;
+    private string message;
+    private List<Account> accounts;
+
+    private async Task CreateAccount()
+    {
+        if (!string.IsNullOrWhiteSpace(userName))
+        {
+            var response = await Http.PostAsJsonAsync("http://localhost:5000/payments/account", new { userName });
+            if (response.IsSuccessStatusCode)
+            {
+                createdAccount = await response.Content.ReadFromJsonAsync<Account>();
+                message = "Account created successfully.";
+            }
+            else
+            {
+                createdAccount = null;
+                message = "Failed to create account.";
+            }
+        }
+        else
+        {
+            message = "User Name cannot be empty.";
+        }
+    }
+
+    private async Task Deposit()
+    {
+        if (Guid.TryParse(depositUserId, out var guid))
+        {
+            var response = await Http.PostAsync($"http://localhost:5000/payments/account/deposit?userId={guid}&amount={depositAmount}", null);
+            if (response.IsSuccessStatusCode)
+            {
+                message = "Deposit successful.";
+            }
+            else
+            {
+                message = "Failed to deposit funds.";
+            }
+        }
+        else
+        {
+            message = "Invalid User ID format.";
+        }
+    }
+
+    private async Task GetBalance()
+    {
+        if (Guid.TryParse(balanceUserId, out var guid))
+        {
+            var response = await Http.GetAsync($"http://localhost:5000/payments/account/balance?userId={guid}");
+            if (response.IsSuccessStatusCode)
+            {
+                balance = await response.Content.ReadFromJsonAsync<decimal?>();
+                message = balance.HasValue ? "" : "Account not found.";
+            }
+            else
+            {
+                message = "Failed to get balance.";
+                balance = null;
+            }
+        }
+        else
+        {
+            message = "Invalid User ID format.";
+        }
+    }
+
+    private async Task GetAllAccounts()
+    {
+        var response = await Http.GetAsync("http://localhost:5000/payments/accounts");
+        if (response.IsSuccessStatusCode)
+        {
+            accounts = await response.Content.ReadFromJsonAsync<List<Account>>();
+            message = accounts.Any() ? "" : "No accounts found.";
+        }
+        else
+        {
+            message = "Failed to get accounts.";
+            accounts = null;
+        }
+    }
+} 

@@ -1,0 +1,327 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ApiGateway</name>
+    </assembly>
+    <members>
+        <member name="M:ApiGateway.Controllers.ApiDocsController.GetOrders(System.Guid)">
+            <summary>
+            Get all orders for a user
+            </summary>
+            <param name="userId">User ID</param>
+            <returns>List of orders</returns>
+        </member>
+        <member name="M:ApiGateway.Controllers.ApiDocsController.CreateOrder(ApiGateway.Controllers.ApiDocsController.CreateOrderRequest)">
+            <summary>
+            Create a new order
+            </summary>
+            <returns>Created order</returns>
+        </member>
+        <member name="M:ApiGateway.Controllers.ApiDocsController.GetProducts">
+            <summary>
+            Get all products
+            </summary>
+            <returns>List of products</returns>
+        </member>
+        <member name="M:ApiGateway.Controllers.ApiDocsController.GetProduct(System.Guid)">
+            <summary>
+            Get a product by ID
+            </summary>
+            <param name="id">Product ID</param>
+            <returns>Product</returns>
+        </member>
+        <member name="M:ApiGateway.Controllers.ApiDocsController.GetPayments(System.Guid)">
+            <summary>
+            Get all payments for a user
+            </summary>
+            <param name="userId">User ID</param>
+            <returns>List of payments</returns>
+        </member>
+        <member name="M:ApiGateway.Controllers.ApiDocsController.CreatePayment(ApiGateway.Controllers.ApiDocsController.CreatePaymentRequest)">
+            <summary>
+            Create a new payment
+            </summary>
+            <returns>Created payment</returns>
+        </member>
+        <member name="T:ApiGateway.Controllers.OrdersController">
+            <summary>
+            Контроллер для работы с заказами
+            </summary>
+        </member>
+        <member name="M:ApiGateway.Controllers.OrdersController.GetOrders(System.Nullable{System.Guid})">
+            <summary>
+            Получение списка заказов пользователя
+            </summary>
+            <param name="userId">ID пользователя (опционально)</param>
+            <returns>Список заказов</returns>
+        </member>
+        <member name="M:ApiGateway.Controllers.OrdersController.CreateOrder(ApiGateway.Models.CreateOrderModel)">
+            <summary>
+            Создание нового заказа
+            </summary>
+            <returns>Созданный заказ</returns>
+        </member>
+        <member name="M:ApiGateway.Controllers.OrdersController.GetOrder(System.Guid)">
+            <summary>
+            Получение заказа по ID
+            </summary>
+            <param name="orderId">ID заказа</param>
+            <returns>Информация о заказе</returns>
+        </member>
+        <member name="M:ApiGateway.Controllers.OrdersController.GetOrderByUserId(System.Guid)">
+            <summary>
+            Получение заказа по ID пользователя
+            </summary>
+            <param name="userId">ID пользователя</param>
+            <returns>Информация о заказе</returns>
+        </member>
+        <member name="T:ApiGateway.Controllers.PaymentsController">
+            <summary>
+            Контроллер для работы с платежами
+            </summary>
+        </member>
+        <member name="M:ApiGateway.Controllers.PaymentsController.CreateAccount(ApiGateway.Models.CreatePaymentAccountModel)">
+            <summary>
+            Создание платежного аккаунта
+            </summary>
+            <returns>Созданный аккаунт</returns>
+        </member>
+        <member name="M:ApiGateway.Controllers.PaymentsController.DepositToAccount(System.Guid,System.Decimal)">
+            <summary>
+            Пополнение счета
+            </summary>
+            <param name="userId">ID пользователя</param>
+            <param name="amount">Сумма пополнения</param>
+            <returns>Обновленный баланс</returns>
+        </member>
+        <member name="M:ApiGateway.Controllers.PaymentsController.WithdrawFromAccount(System.Guid,System.Decimal)">
+            <summary>
+            Снятие со счета
+            </summary>
+            <param name="userId">ID пользователя</param>
+            <param name="amount">Сумма снятия</param>
+            <returns>Обновленный баланс</returns>
+        </member>
+        <member name="M:ApiGateway.Controllers.PaymentsController.GetAccountBalance(System.Guid)">
+            <summary>
+            Получение баланса счета
+            </summary>
+            <param name="userId">ID пользователя</param>
+            <returns>Текущий баланс</returns>
+        </member>
+        <member name="M:ApiGateway.Controllers.PaymentsController.GetAllAccounts">
+            <summary>
+            Получение списка всех аккаунтов
+            </summary>
+            <returns>Список аккаунтов</returns>
+        </member>
+        <member name="T:ApiGateway.Controllers.ProductsController">
+            <summary>
+            Контроллер для работы с продуктами
+            </summary>
+        </member>
+        <member name="M:ApiGateway.Controllers.ProductsController.GetProducts">
+            <summary>
+            Получение списка всех продуктов
+            </summary>
+            <returns>Список продуктов</returns>
+        </member>
+        <member name="M:ApiGateway.Controllers.ProductsController.GetProduct(System.Guid)">
+            <summary>
+            Получение продукта по ID
+            </summary>
+            <param name="id">ID продукта</param>
+            <returns>Информация о продукте</returns>
+        </member>
+        <member name="T:ApiGateway.Models.OrderModel">
+            <summary>
+            Модель заказа
+            </summary>
+        </member>
+        <member name="P:ApiGateway.Models.OrderModel.Id">
+            <summary>
+            Идентификатор заказа
+            </summary>
+        </member>
+        <member name="P:ApiGateway.Models.OrderModel.UserId">
+            <summary>
+            Идентификатор пользователя
+            </summary>
+        </member>
+        <member name="P:ApiGateway.Models.OrderModel.TotalAmount">
+            <summary>
+            Общая сумма заказа
+            </summary>
+        </member>
+        <member name="P:ApiGateway.Models.OrderModel.Status">
+            <summary>
+            Статус заказа
+            </summary>
+        </member>
+        <member name="P:ApiGateway.Models.OrderModel.CreatedAt">
+            <summary>
+            Дата создания заказа
+            </summary>
+        </member>
+        <member name="P:ApiGateway.Models.OrderModel.Items">
+            <summary>
+            Элементы заказа
+            </summary>
+        </member>
+        <member name="T:ApiGateway.Models.OrderItemModel">
+            <summary>
+            Модель элемента заказа
+            </summary>
+        </member>
+        <member name="P:ApiGateway.Models.OrderItemModel.Id">
+            <summary>
+            Идентификатор элемента заказа
+            </summary>
+        </member>
+        <member name="P:ApiGateway.Models.OrderItemModel.ProductId">
+            <summary>
+            Идентификатор продукта
+            </summary>
+        </member>
+        <member name="P:ApiGateway.Models.OrderItemModel.Quantity">
+            <summary>
+            Количество продукта
+            </summary>
+        </member>
+        <member name="P:ApiGateway.Models.OrderItemModel.UnitPrice">
+            <summary>
+            Цена за единицу продукта
+            </summary>
+        </member>
+        <member name="T:ApiGateway.Models.CreateOrderModel">
+            <summary>
+            Модель для создания заказа
+            </summary>
+        </member>
+        <member name="P:ApiGateway.Models.CreateOrderModel.UserId">
+            <summary>
+            Идентификатор пользователя
+            </summary>
+        </member>
+        <member name="P:ApiGateway.Models.CreateOrderModel.Items">
+            <summary>
+            Элементы заказа
+            </summary>
+        </member>
+        <member name="T:ApiGateway.Models.CreateOrderItemModel">
+            <summary>
+            Модель для создания элемента заказа
+            </summary>
+        </member>
+        <member name="P:ApiGateway.Models.CreateOrderItemModel.ProductId">
+            <summary>
+            Идентификатор продукта
+            </summary>
+        </member>
+        <member name="P:ApiGateway.Models.CreateOrderItemModel.Quantity">
+            <summary>
+            Количество продукта
+            </summary>
+        </member>
+        <member name="T:ApiGateway.Models.PaymentAccountModel">
+            <summary>
+            Модель платежного аккаунта
+            </summary>
+        </member>
+        <member name="P:ApiGateway.Models.PaymentAccountModel.Id">
+            <summary>
+            Идентификатор аккаунта
+            </summary>
+        </member>
+        <member name="P:ApiGateway.Models.PaymentAccountModel.UserId">
+            <summary>
+            Идентификатор пользователя
+            </summary>
+        </member>
+        <member name="P:ApiGateway.Models.PaymentAccountModel.Balance">
+            <summary>
+            Баланс аккаунта
+            </summary>
+        </member>
+        <member name="P:ApiGateway.Models.PaymentAccountModel.CreatedAt">
+            <summary>
+            Дата создания аккаунта
+            </summary>
+        </member>
+        <member name="T:ApiGateway.Models.CreatePaymentAccountModel">
+            <summary>
+            Модель для создания платежного аккаунта
+            </summary>
+        </member>
+        <member name="P:ApiGateway.Models.CreatePaymentAccountModel.UserId">
+            <summary>
+            Идентификатор пользователя
+            </summary>
+        </member>
+        <member name="P:ApiGateway.Models.CreatePaymentAccountModel.InitialBalance">
+            <summary>
+            Начальный баланс аккаунта
+            </summary>
+        </member>
+        <member name="T:ApiGateway.Models.BalanceOperationModel">
+            <summary>
+            Модель для операций с балансом
+            </summary>
+        </member>
+        <member name="P:ApiGateway.Models.BalanceOperationModel.UserId">
+            <summary>
+            Идентификатор пользователя
+            </summary>
+        </member>
+        <member name="P:ApiGateway.Models.BalanceOperationModel.Amount">
+            <summary>
+            Сумма операции
+            </summary>
+        </member>
+        <member name="T:ApiGateway.Models.BalanceResponseModel">
+            <summary>
+            Модель ответа с балансом
+            </summary>
+        </member>
+        <member name="P:ApiGateway.Models.BalanceResponseModel.UserId">
+            <summary>
+            Идентификатор пользователя
+            </summary>
+        </member>
+        <member name="P:ApiGateway.Models.BalanceResponseModel.Balance">
+            <summary>
+            Текущий баланс
+            </summary>
+        </member>
+        <member name="T:ApiGateway.Models.ProductModel">
+            <summary>
+            Модель продукта
+            </summary>
+        </member>
+        <member name="P:ApiGateway.Models.ProductModel.Id">
+            <summary>
+            Идентификатор продукта
+            </summary>
+        </member>
+        <member name="P:ApiGateway.Models.ProductModel.Name">
+            <summary>
+            Название продукта
+            </summary>
+        </member>
+        <member name="P:ApiGateway.Models.ProductModel.Description">
+            <summary>
+            Описание продукта
+            </summary>
+        </member>
+        <member name="P:ApiGateway.Models.ProductModel.Price">
+            <summary>
+            Цена продукта
+            </summary>
+        </member>
+        <member name="P:ApiGateway.Models.ProductModel.Stock">
+            <summary>
+            Количество продукта на складе
+            </summary>
+        </member>
+    </members>
+</doc>

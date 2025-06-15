@@ -1,0 +1,8 @@
+C:\Users\79787\VSCodeProjects\HSE-Software-Design\IHW-3\payments-service\obj\Debug\net8.0\PaymentsService.csproj.AssemblyReference.cache
+C:\Users\79787\VSCodeProjects\HSE-Software-Design\IHW-3\payments-service\obj\Debug\net8.0\PaymentsService.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\79787\VSCodeProjects\HSE-Software-Design\IHW-3\payments-service\obj\Debug\net8.0\PaymentsService.AssemblyInfoInputs.cache
+C:\Users\79787\VSCodeProjects\HSE-Software-Design\IHW-3\payments-service\obj\Debug\net8.0\PaymentsService.AssemblyInfo.cs
+C:\Users\79787\VSCodeProjects\HSE-Software-Design\IHW-3\payments-service\obj\Debug\net8.0\PaymentsService.csproj.CoreCompileInputs.cache
+C:\Users\79787\VSCodeProjects\HSE-Software-Design\IHW-3\payments-service\obj\Debug\net8.0\PaymentsService.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\79787\VSCodeProjects\HSE-Software-Design\IHW-3\payments-service\obj\Debug\net8.0\PaymentsService.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\79787\VSCodeProjects\HSE-Software-Design\IHW-3\payments-service\obj\Debug\net8.0\PaymentsService.sourcelink.json

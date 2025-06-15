@@ -1,0 +1,181 @@
+version: '3.8'
+
+services:
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    container_name: kafka
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+    volumes:
+      - ./kafka-log4j.properties:/etc/kafka/log4j.properties
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: 'CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT'
+      KAFKA_ADVERTISED_LISTENERS: 'PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092'
+      KAFKA_PROCESS_ROLES: 'broker,controller'
+      KAFKA_CONTROLLER_QUORUM_VOTERS: '1@kafka:29093'
+      KAFKA_LISTENERS: 'PLAINTEXT://0.0.0.0:9092,CONTROLLER://kafka:29093,PLAINTEXT_HOST://0.0.0.0:29092'
+      KAFKA_INTER_BROKER_LISTENER_NAME: 'PLAINTEXT'
+      KAFKA_CONTROLLER_LISTENER_NAMES: 'CONTROLLER'
+      KAFKA_LOG_DIRS: '/tmp/kraft-combined-logs'
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      CLUSTER_ID: 'MkU3OEVBNTcwNTJENDM2Qk'
+      KAFKA_LOG4J_ROOT_LOGLEVEL: 'ERROR'
+      KAFKA_LOG4J_LOGGERS: 'kafka=ERROR,kafka.controller=ERROR,kafka.log=ERROR,kafka.server=ERROR,kafka.zookeeper=ERROR,state.change.logger=ERROR,org.apache.kafka=ERROR'
+      KAFKA_TOOLS_LOG4J_LOGLEVEL: 'ERROR'
+      KAFKA_LOG4J_LOGGER_KAFKA_LOG_LOGMANAGER: 'ERROR'
+      KAFKA_LOG4J_LOGGER_KAFKA_SERVER: 'ERROR'
+      KAFKA_LOG4J_LOGGER_KAFKA_CLIENTS: 'ERROR'
+      KAFKA_LOG4J_LOGGER_ORG_APACHE_KAFKA: 'ERROR'
+      KAFKA_JMX_OPTS: "-Dlog4j.configuration=file:/etc/kafka/log4j.properties"
+    healthcheck:
+      test: ["CMD-SHELL", "kafka-topics --bootstrap-server kafka:9092 --list"]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+      start_period: 15s
+    networks:
+      - ecommerc-network
+
+  kafka-init:
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      kafka:
+        condition: service_healthy
+    volumes:
+      - ./kafka-log4j.properties:/etc/kafka/log4j.properties
+    environment:
+      KAFKA_LOG4J_ROOT_LOGLEVEL: 'ERROR'
+      KAFKA_LOG4J_LOGGERS: 'kafka=ERROR,kafka.controller=ERROR,kafka.log=ERROR,kafka.server=ERROR,kafka.zookeeper=ERROR,state.change.logger=ERROR,org.apache.kafka=ERROR'
+      KAFKA_TOOLS_LOG4J_LOGLEVEL: 'ERROR'
+      KAFKA_LOG4J_LOGGER_KAFKA_LOG_LOGMANAGER: 'ERROR'
+      KAFKA_LOG4J_LOGGER_KAFKA_SERVER: 'ERROR'
+      KAFKA_LOG4J_LOGGER_KAFKA_CLIENTS: 'ERROR'
+      KAFKA_LOG4J_LOGGER_ORG_APACHE_KAFKA: 'ERROR'
+    command: >
+      bash -c "
+        echo 'Waiting for Kafka to be ready...' &&
+        export KAFKA_OPTS='-Dlog4j.rootLogger=ERROR,stdout -Dlog4j.logger.org.apache.kafka=ERROR -Dlog4j.configuration=file:/etc/kafka/log4j.properties' &&
+        cub kafka-ready -b kafka:9092 1 60 &&
+        echo 'Creating Kafka topics...' &&
+        kafka-topics --create --if-not-exists --bootstrap-server kafka:9092 --partitions 1 --replication-factor 1 --topic order-created-topic &&
+        kafka-topics --create --if-not-exists --bootstrap-server kafka:9092 --partitions 1 --replication-factor 1 --topic payment-completed-topic &&
+        kafka-topics --create --if-not-exists --bootstrap-server kafka:9092 --partitions 1 --replication-factor 1 --topic payment-failed-topic &&
+        echo 'Kafka topics created successfully!' &&
+        kafka-topics --list --bootstrap-server kafka:9092
+      "
+    networks:
+      - ecommerc-network
+
+  postgres-orders:
+    image: postgres:13
+    ports:
+      - "5435:5432"
+    environment:
+      - POSTGRES_DB=ordersdb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - orders-db-data:/var/lib/postgresql/data
+    networks:
+      - ecommerc-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d ordersdb"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  payments-service:
+    build:
+      context: .
+      dockerfile: payments-service/Dockerfile
+    ports:
+      - "5002:8081"
+    depends_on:
+      - payments-db
+      - kafka-init
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=payments-db;Port=5432;Database=paymentsdb;Username=postgres;Password=password
+      - "MessageBroker:BootstrapServers=kafka:9092"
+      - ASPNETCORE_ENVIRONMENT=Development
+    networks:
+      - ecommerc-network
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8081/healthz || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+  orders-service:
+    build:
+      context: .
+      dockerfile: orders-service/Dockerfile
+    ports:
+      - "5003:8082"
+    depends_on:
+      - postgres-orders
+      - kafka-init
+    networks:
+      - ecommerc-network
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=postgres-orders;Port=5432;Database=ordersdb;Username=postgres;Password=password
+      - "MessageBroker:BootstrapServers=kafka:9092"
+      - PaymentsServiceUrl=http://payments-service:8081
+      - ASPNETCORE_ENVIRONMENT=Development
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8082/healthz || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+  payments-db:
+    image: postgres:13
+    ports:
+      - "5434:5432"
+    environment:
+      - POSTGRES_DB=paymentsdb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - payments-db-data:/var/lib/postgresql/data
+    networks:
+      - ecommerc-network
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    ports:
+      - "5001:80"
+    depends_on:
+      - api-gateway
+    networks:
+      - ecommerc-network
+
+  api-gateway:
+    build:
+      context: .
+      dockerfile: api-gateway/Dockerfile
+    ports:
+      - "5000:8080"
+    depends_on:
+      - orders-service
+      - payments-service
+    environment:
+      - PaymentsServiceUrl=http://payments-service:8081
+      - OrdersServiceUrl=http://orders-service:8082
+      - ASPNETCORE_ENVIRONMENT=Development
+    networks:
+      - ecommerc-network
+
+networks:
+  ecommerc-network:
+    driver: bridge
+
+volumes:
+  payments-db-data:
+  orders-db-data:
